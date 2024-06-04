@@ -24,5 +24,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/result" />
+
+        <TextView
+            android:id="@+id/result_description"
+            android:layout_width="284dp"
+            android:layout_height="87dp"
+            android:layout_margin="60dp"
+            android:text="@string/description" />
     </LinearLayout>
 </ScrollView>
