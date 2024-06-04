@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Dermafie</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">History</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_history">History</string>
+    <string name="title_profile">Profile</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="analyze">Analyze</string>
 </resources>

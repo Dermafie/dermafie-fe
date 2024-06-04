@@ -1,13 +1,13 @@
-package com.example.dermafie.ui.dashboard
+package com.example.dermafie.ui.scan
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class ScanViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is scan Fragment"
     }
     val text: LiveData<String> = _text
 }
