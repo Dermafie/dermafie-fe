@@ -64,7 +64,7 @@
 
     <Button
         android:id="@+id/analyzeButton"
-        android:layout_width="371dp"
+        android:layout_width="365dp"
         android:layout_height="49dp"
         android:layout_marginBottom="92dp"
         android:text="@string/analyze"
