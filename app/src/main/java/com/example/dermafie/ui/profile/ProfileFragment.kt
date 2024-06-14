@@ -91,6 +91,7 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
             }
         }
+        binding.buttonSave.setOnClickListener { context?.cacheDir?.deleteRecursively() }
 
         profileViewModel.profileData.observe(viewLifecycleOwner) { profile ->
             binding.tvUsername.text = profile.name ?: "Sambit"
@@ -151,15 +152,21 @@ class ProfileFragment : Fragment() {
                     if (response.isSuccessful) {
                         val successResponse = response.body()
                         showToast(successResponse?.message ?: "Profile picture uploaded successfully")
+                        clearAppCache()
+//                        refreshUserProfile()
                     } else {
                         val errorBody = response.errorBody()?.string()
                         val errorResponse = Gson().fromJson(errorBody, UploadProfileResponse::class.java)
                         showToast(errorResponse.message)
+                        clearAppCache()
+//                        refreshUserProfile()
                     }
                 }
 
                 override fun onFailure(call: Call<UploadProfileResponse>, t: Throwable) {
                     showToast("Error uploading profile picture: ${t.message}")
+                    clearAppCache()
+//                    refreshUserProfile()
                 }
             })
         }
@@ -172,5 +179,22 @@ class ProfileFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun refreshUserProfile() {
+        lifecycleScope.launch {
+            val token = userSession.getToken().first()
+            profileViewModel.fetchUserProfile("Bearer $token")
+        }
+    }
+
+
+    private fun clearAppCache() {
+        try {
+            val cacheDir = requireContext().cacheDir
+            cacheDir.deleteRecursively()
+        } catch (e: Exception) {
+            showToast("Failed to clear cache: ${e.message}")
+        }
     }
 }
