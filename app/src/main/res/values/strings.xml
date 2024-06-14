@@ -71,4 +71,7 @@
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
     <string name="save">Simpan Perubahan</string>
+    <string name="analyze">Analyze</string>
+    <string name="result">Analysis Result</string>
+    <string name="description">Description</string>
 </resources>

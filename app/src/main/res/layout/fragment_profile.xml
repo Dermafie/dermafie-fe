@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".ui.profile.ProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/photo_profile"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        app:layout_constraintBottom_toTopOf="@+id/change_photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/mantra" />
 
     <TextView
@@ -23,40 +21,41 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="@string/changephoto"
+        android:layout_marginBottom="20dp"
         android:textColor="@color/navy"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/text_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/photo_profile"
-        app:layout_constraintVertical_bias="0.17000002" />
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvUsername"
-        android:textSize="20sp"
+        android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvUsername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/change_photo" />
-
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="28sp"
         android:layout_marginBottom="20sp"
         android:text="@string/tvUsername"
-        app:layout_constraintBottom_toTopOf="@id/buttonLogout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_name"
-        app:layout_constraintVertical_bias="0.26999998" />
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/purple_200"/>
 
     <Button
         android:id="@+id/buttonLogout"
@@ -64,18 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_name" />
+        android:layout_gravity="center"
+        android:backgroundTint="@color/purple_700"/>
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogout" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

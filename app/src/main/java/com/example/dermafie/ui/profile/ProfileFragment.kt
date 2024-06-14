@@ -91,7 +91,7 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
             }
         }
-        binding.buttonSave.setOnClickListener { context?.cacheDir?.deleteRecursively() }
+        binding.buttonSave.setOnClickListener { context?.cacheDir?.deleteRecursively()}
 
         profileViewModel.profileData.observe(viewLifecycleOwner) { profile ->
             binding.tvUsername.text = profile.name ?: "Sambit"
