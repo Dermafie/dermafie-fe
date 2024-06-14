@@ -3,6 +3,7 @@ package com.example.storyapp.data.retrofit
 import com.example.dermafie.data.response.Login2Response
 import com.example.dermafie.data.response.ProfileResponse
 import com.example.dermafie.data.response.Register2Response
+import com.example.dermafie.data.response.UploadProfileResponse
 import com.example.storyapp.data.response.AddStoryResponse
 import com.example.storyapp.data.response.DetailStoryResponse
 import com.example.storyapp.data.response.LoginResponse
@@ -18,6 +19,7 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 
 interface ApiService {
@@ -59,4 +61,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<ProfileResponse>
 
+    @Multipart
+    @PUT("users/profile")
+    fun uploadProfilePicture(
+        @Header("Authorization") token: String,
+        @Part profilePicture: MultipartBody.Part
+    ): Call<UploadProfileResponse>
 }
