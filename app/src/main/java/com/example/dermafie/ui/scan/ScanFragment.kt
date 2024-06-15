@@ -122,7 +122,7 @@ class ScanFragment : Fragment() {
             )
             lifecycleScope.launch {
                 try {
-                    val apiService = ApiConfig.getApiService()
+                    val apiService = ApiConfig.getApiServiceResult()
                     val successResponse = apiService.uploadImage(multipartBody)
                     with(successResponse.data){
                         binding.resultTextView.text = if (isAboveThreshold == true) {

@@ -6,10 +6,10 @@ data class FileUploadResponse(
     @SerializedName("message")
     var message: String? = null,
     @SerializedName("data")
-    var data: Data = Data()
+    var data: DataResult = DataResult()
 )
 
-data class Data(
+data class DataResult(
     @SerializedName("id")
     var id: String? = null,
     @SerializedName("result")
@@ -21,3 +21,4 @@ data class Data(
     @SerializedName("createdAt")
     var createdAt: String? = null
 )
+
