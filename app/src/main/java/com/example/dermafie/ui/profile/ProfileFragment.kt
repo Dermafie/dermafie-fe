@@ -95,6 +95,7 @@ class ProfileFragment : Fragment() {
 
         profileViewModel.profileData.observe(viewLifecycleOwner) { profile ->
             binding.tvUsername.text = profile.name ?: "Sambit"
+            binding.tvEmail.text = profile.email ?: "Sambit@gmail.com"
             val profilePicUrl = profile.profilepic ?: "mantra.jpeg"
             Glide.with(this)
                 .load(profilePicUrl)
