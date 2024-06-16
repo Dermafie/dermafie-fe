@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -66,6 +67,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (registerResponse != null) {
                         _registrationResult.value = RegistrationResult(success = true, message = registerResponse.message)
                         login() // Call goLogin function if registration is successful
+                        Toast.makeText(this@RegisterActivity, "Register Success", Toast.LENGTH_LONG).show()
                     } else {
                         _registrationResult.value = RegistrationResult(success = false, message = registerResponse?.message ?: "Registration failed")
                     }

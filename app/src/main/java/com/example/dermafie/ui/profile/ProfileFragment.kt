@@ -91,10 +91,14 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
             }
         }
-        binding.buttonSave.setOnClickListener { context?.cacheDir?.deleteRecursively()}
+        binding.buttonSave.setOnClickListener {
+            context?.cacheDir?.deleteRecursively()
+            Toast.makeText(activity, "Save success", Toast.LENGTH_LONG).show()
+        }
 
         profileViewModel.profileData.observe(viewLifecycleOwner) { profile ->
             binding.tvUsername.text = profile.name ?: "Sambit"
+            binding.tvEmail.text = profile.email ?: "sambit@gmail.com"
             val profilePicUrl = profile.profilepic ?: "mantra.jpeg"
             Glide.with(this)
                 .load(profilePicUrl)
