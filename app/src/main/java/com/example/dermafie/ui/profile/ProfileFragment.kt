@@ -99,10 +99,16 @@ class ProfileFragment : Fragment() {
         profileViewModel.profileData.observe(viewLifecycleOwner) { profile ->
             binding.tvUsername.text = profile.name ?: "Sambit"
             binding.tvEmail.text = profile.email ?: "sambit@gmail.com"
-            val profilePicUrl = profile.profilepic ?: "mantra.jpeg"
-            Glide.with(this)
-                .load(profilePicUrl)
-                .into(binding.photoProfile)
+            if (profile.email == null) {
+                Glide.with(this)
+                    .load(R.drawable.mantra)
+                    .into(binding.photoProfile)
+            } else {
+                val profilePicUrl = profile.profilepic ?: "mantra.jpeg"
+                Glide.with(this)
+                    .load(profilePicUrl)
+                    .into(binding.photoProfile)
+            }
         }
 
         profileViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
