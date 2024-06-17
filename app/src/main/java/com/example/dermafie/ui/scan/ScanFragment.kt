@@ -171,6 +171,41 @@ class ScanFragment : Fragment() {
         } ?: showToast(getString(R.string.empty_image_warning))
     }
 
+    /*private fun uploadImage() {
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            Log.d("Image Classification File", "showImage: ${imageFile.path}")
+            showLoading(true)
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            val multipartBody = MultipartBody.Part.createFormData(
+                "photo",
+                imageFile.name,
+                requestImageFile
+            )
+            lifecycleScope.launch {
+                try {
+                    val apiService = ApiConfig.getApiServiceResult()
+                    val successResponse = apiService.uploadImage(multipartBody)
+                    with(successResponse.data){
+                        binding.resultTextView.text = if (isAboveThreshold == true) {
+                            showToast(successResponse.message.toString())
+                            String.format("%s with %.2f%%", result, confidenceScore)
+                        } else {
+                            showToast("Model is predicted successfully but under threshold.")
+                            String.format("Please use the correct picture because  the confidence score is %.2f%%", confidenceScore)
+                        }
+                    }
+                    showLoading(false)
+                } catch (e: HttpException) {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, FileUploadResponse::class.java)
+                    showToast(errorResponse.message.toString())
+                    showLoading(false)
+                }
+            }
+        } ?: showToast(getString(R.string.empty_image_warning))
+    }*/
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
