@@ -14,10 +14,10 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Get the data passed from ScanFragment
-        val result = intent.getStringExtra("result")
-        val confidenceScore = intent.getDoubleExtra("confidenceScore", 0.0)
+        val resultMessage = intent.getStringExtra("resultMessage") ?: "No result"
+        val thresholdMessage = intent.getStringExtra("thresholdMessage") ?: "No confidence score"
 
         // Display the result in a TextView
-        binding.resultTextView.text = String.format("%s with %.2f%% confidence", result, confidenceScore)
+        binding.resultTextView.text = "$resultMessage $thresholdMessage"
     }
 }
