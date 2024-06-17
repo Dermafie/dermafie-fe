@@ -1,6 +1,7 @@
 package com.example.dermafie.ui.scan
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.example.dermafie.data.reduceFileImage
 import com.example.dermafie.data.response.FileUploadResponse
 import com.example.dermafie.data.uriToFile
 import com.example.dermafie.databinding.FragmentScanBinding
+import com.example.dermafie.ui.result.ResultActivity
 import com.example.storyapp.data.retrofit.ApiConfig
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -142,16 +144,23 @@ class ScanFragment : Fragment() {
                 try {
                     val apiService = ApiConfig.getApiServiceResult()
                     val successResponse = apiService.uploadImage(multipartBody)
-                    with(successResponse.data){
-                        binding.resultTextView.text = if (isAboveThreshold == true) {
+                    with(successResponse.data) {
+                        val resultText = if (isAboveThreshold == true) {
                             showToast(successResponse.message.toString())
                             String.format("%s with %.2f%%", result, confidenceScore)
                         } else {
                             showToast("Model is predicted successfully but under threshold.")
-                            String.format("Please use the correct picture because  the confidence score is %.2f%%", confidenceScore)
+                            String.format("Please use the correct picture because the confidence score is %.2f%%", confidenceScore)
                         }
+                        showLoading(false)
+
+                        // Start ResultActivity and pass the result data
+                        val intent = Intent(requireContext(), ResultActivity::class.java).apply {
+                            putExtra("result", result)
+                            putExtra("confidenceScore", confidenceScore)
+                        }
+                        startActivity(intent)
                     }
-                    showLoading(false)
                 } catch (e: HttpException) {
                     val errorBody = e.response()?.errorBody()?.string()
                     val errorResponse = Gson().fromJson(errorBody, FileUploadResponse::class.java)
