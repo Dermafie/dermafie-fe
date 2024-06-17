@@ -1,5 +1,7 @@
 package com.example.storyapp.data.retrofit
 
+/*import com.example.dermafie.data.response.FileUploadResponse*/
+import com.example.dermafie.data.response.FileUploadResponse
 import com.example.dermafie.data.response.Login2Response
 import com.example.dermafie.data.response.ProfileResponse
 import com.example.dermafie.data.response.Register2Response
@@ -67,4 +69,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part profilePicture: MultipartBody.Part
     ): Call<UploadProfileResponse>
+
+    @Multipart
+    @POST("skin-cancer/predict")
+    suspend fun uploadImage(
+        @Part file: MultipartBody.Part
+    ): FileUploadResponse
 }
