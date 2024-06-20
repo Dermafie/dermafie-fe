@@ -68,6 +68,16 @@ class HistoryAdapter : ListAdapter<DataItem, HistoryAdapter.HistoryViewHolder>(D
             val formattedDate = originalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             scanDateTextView.text = formattedDate
             scanResultTextView.text = dataItem.scanResult
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, ResultActivity::class.java).apply {
+                    putExtra("resultMessage", dataItem.scanResult)
+                    putExtra("diseaseDescription", dataItem.disease.description)
+                    putExtra("diseaseEffects", dataItem.disease.effects)
+                    putExtra("diseaseSolution", dataItem.disease.solution)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 }
