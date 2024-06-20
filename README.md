@@ -25,7 +25,8 @@ Dermafie is an innovative mobile application designed to detect skin diseases on
 To use Dermafie effectively, follow these steps:
 
 1. **Download and Install the Application:**
-   - Download via this link https://github.com/Dermafie/dermafie-fe/releases/tag/v0.0.1-alpha
+   - Download via the application from our [release page](https://github.com/Dermafie/dermafie-fe/releases)
+   - Or you can also clone our code from our repository (https://github.com/Dermafie/dermafie-fe.git) using git clone command.
 
 2. **Create an Account:**
    - Launch the application on your mobile device.
