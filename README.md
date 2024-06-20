@@ -1,4 +1,4 @@
-# Dermafie Application
+# Dermafie Android Application
 
 ## Overview
 
