@@ -23,21 +23,23 @@ class HistoryViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun fetchUserHistory(token: String) {
         Log.d(TAG, "Fetching user history with token: $token")
         val client = ApiConfig.getApiService().getHistory(token)
         client.enqueue(object : Callback<HistoryResponse> {
-            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<HistoryResponse>, response: Response<HistoryResponse>) {
                 Log.d(TAG, "onResponse called")
                 if (response.isSuccessful) {
                     val userHistoryResponse = response.body()
                     Log.d(TAG, "Response: $userHistoryResponse")
                     if (userHistoryResponse != null) {
-                        val userHistory = userHistoryResponse.data.map {
-                            it.copy(scanDate = formatScanDate(it.scanDate))
+                        // Parse and sort history items by scanDate in descending order
+                        val userHistory = userHistoryResponse.data.sortedByDescending {
+                            ZonedDateTime.parse(it.scanDate, DateTimeFormatter.ISO_DATE_TIME)
                         }
-                        _historyData.value = userHistory.sortedByDescending { it.scanDate }
+                        // Update LiveData
+                        _historyData.value = userHistory
                         Log.d(TAG, "onSuccess: $userHistory")
                     } else {
                         Log.e(TAG, "onFailure: Invalid response")
@@ -54,12 +56,6 @@ class HistoryViewModel : ViewModel() {
                 _errorMessage.value = "Network failure: ${t.message}"
             }
         })
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun formatScanDate(scanDate: String): String {
-        val originalDate = ZonedDateTime.parse(scanDate, DateTimeFormatter.ISO_DATE_TIME)
-        return originalDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
     companion object {
