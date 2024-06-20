@@ -18,16 +18,15 @@ To use Dermafie effectively, follow these steps:
 
 1. **Download and Install the Application:**
 
-
 2. **Create an Account:**
    - Launch the application on your mobile device.
-   - Sign up by providing necessary details such as email and password.
-   - Verify your email address to activate your account.
+   - Sign up by providing necessary details such as username, email, and password.
 
 3. **Capture and Analyze Facial Images:**
    - Log in to your Dermafie account.
    - Use the camera feature to capture a clear image of your face.
-   - Allow the application to process the image using its detection algorithms.
+   - You can also piick image from your phone gallery.
+   - Allow the application to process the image using its machine learning model algorithms.
 
 4. **View Results and Recommendations:**
    - Once processed, view the detected skin condition and its details on the screen.
